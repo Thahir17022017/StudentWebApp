@@ -15,6 +15,9 @@ var mark3 = readRef("mark3");
 var submitBtn = readRef("submit");
 var clearBtn = readRef("clear");
 
+//read error label ref
+var errorLabel = readRef("errorLabel");
+
 function readRef(val)
 {
     return document.getElementById(val);
@@ -32,15 +35,10 @@ function enableButtons()
 
 function clearValues()
 {
-    fName.value = "";
-    mName.value = "";
-    lName.value = "";
-    age.value="";
-    mark1.value="";
-    mark2.value="";
-    mark3.value="";
+    resetfields(fName,mName,lName,age,mark1,mark2,mark3);
     clearBtn.disabled = true;
     submitBtn.disabled = true;
+    errorLabel.style.visibility = "hidden";
 }
 
 function resetfields(...reset)
@@ -62,7 +60,7 @@ function sendData()
             genderValue = ele[i].value;    
         }
     }
-    var errorLabel = readRef("errorLabel");
+    
     if(fName.value === "" || lName.value === "" || age.value === "" || mark1.value === "" || mark2.value === "" || mark3.value === "" )
     {
         errorLabel.style.visibility = "visible";
@@ -72,4 +70,6 @@ function sendData()
         errorLabel.style.visibility = "hidden";
         resetfields(fName,mName,lName,age,mark1,mark2,mark3);
     }
+
+
 }
