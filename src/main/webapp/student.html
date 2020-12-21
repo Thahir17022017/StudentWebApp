@@ -53,42 +53,47 @@
                     <h4 class="card-title">Student Info</h4>
                     <form action="/action_page.php">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="First Name *" id="firstname" required>
+                        <input type="text" class="form-control" placeholder="First Name *" id="firstname" oninput="enableButtons()" required>
                       </div>
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Middle Name" id="middlename">
+                        <input type="text" class="form-control" placeholder="Middle Name" id="middlename" oninput="enableButtons()">
                       </div>
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Last Name *" id="lastname" required>
+                        <input type="text" class="form-control" placeholder="Last Name *" id="lastname" oninput="enableButtons()" required>
                       </div>
                       <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Age *" id="age" min="0" required>
+                        <input type="number" class="form-control" placeholder="Age *" id="age" min="0" oninput="enableButtons()" required>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline" style="margin-left: 5px;">
-                        <input type="radio" class="custom-control-input" id="male" name="example" value="customEx" checked>
+                        <input type="radio" class="custom-control-input" id="male" name="example" value="male" checked>
                         <label class="custom-control-label" for="male">Male</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="female" name="example" value="customEx">
+                        <input type="radio" class="custom-control-input" id="female" name="example" value="female">
                         <label class="custom-control-label" for="female">Female</label>
                       </div>
                       <div style="padding:5px">
 
                       </div>
                       <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Mark 1 *" id="mark1" min="0" required>
+                        <input type="number" class="form-control" placeholder="Mark 1 *" id="mark1" min="0" oninput="enableButtons()" required>
                       </div>
                       <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Mark 2 *" id="mark2" min="0" required>
+                        <input type="number" class="form-control" placeholder="Mark 2 *" id="mark2" min="0" oninput="enableButtons()" required>
                       </div>
                       <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Mark 3 *" id="mark3" min="0" required>
+                        <input type="number" class="form-control" placeholder="Mark 3 *" id="mark3" min="0" oninput="enableButtons()" required>
                       </div>
                       <div class="container pt-2">
                         <div class="row">
                           <div class="col d-flex justify-content-center">
-                            <button type="submit" class="btn btn-info shadow" style="width:120px;border-radius:40px;" disabled>Submit</button>
-                            <button type="submit" class="btn btn-danger shadow" style=" margin-left:10px;width:120px;border-radius:40px;" disabled>Clear</button>
+                            <label id="errorLabel" style="color:red;visibility:hidden;";>Mandatory fields are required</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col d-flex justify-content-center">
+                            <button type="button" id="submit" class="btn btn-info shadow" style="width:120px;border-radius:40px;" onclick="sendData()" disabled>Submit</button>
+                            <button type="button" id="clear" class="btn btn-danger shadow" style=" margin-left:10px;width:120px;border-radius:40px;" onclick="clearValues()" disabled>Clear</button>
                           </div>
                           
                         </div>
