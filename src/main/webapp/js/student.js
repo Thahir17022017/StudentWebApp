@@ -81,7 +81,7 @@ function sendData()
         resetfields(fName,mName,lName,age,mark1,mark2,mark3);
         import('./send.js').then((tranport) => {
             // Do something with the module.
-            tranport.sendData("GET","https://webhook.site/fbb36875-1b53-4775-a454-4ab8335a91c7","");
+        tranport.sendData("Post","./api/test",jsonPayload);
         }).catch((err)=>{
             console.log("Error in transport",err);
         });
