@@ -1,12 +1,14 @@
+
+let response;
 export function sendData(requestType,url,dataToSend)
 {
     var request = new XMLHttpRequest();
     let response;
-    
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           console.log("response is received");
-           response = this.responseText;
+          response = this.responseText;
+            
         }
       };
       
@@ -20,5 +22,6 @@ export function sendData(requestType,url,dataToSend)
     {
       request.send();
     }
+    return request;
     
 }
