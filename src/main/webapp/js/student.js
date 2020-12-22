@@ -69,23 +69,22 @@ function sendData()
     {
         errorLabel.style.visibility = "hidden";
         var jsonPayload = {};
-        jsonPayload["fName"] = fName.value;
-		jsonPayload["mName"] = mName.value;
-        jsonPayload["lName"] = lName.value;
+        jsonPayload["firstName"] = fName.value;
+		jsonPayload["middleName"] = mName.value;
+        jsonPayload["lastName"] = lName.value;
         jsonPayload["gender"] = genderValue;
 		jsonPayload["age"] = age.value;
 		jsonPayload["mark1"] = mark1.value;
 		jsonPayload["mark2"] = mark2.value;
 		jsonPayload["mark3"] = mark3.value;
-        console.log("jsonPayload",jsonPayload);
         resetfields(fName,mName,lName,age,mark1,mark2,mark3);
-        import('./send.js').then((tranport) => {
+        import('./send.js').then((transport) => {
             // Do something with the module.
-            tranport.sendData("GET","https://webhook.site/fbb36875-1b53-4775-a454-4ab8335a91c7","");
+           var request = transport.sendData("Post","./webapi/students",jsonPayload);
+           console.log("Response",request.responseText);
+        
         }).catch((err)=>{
             console.log("Error in transport",err);
         });
     }
-
-
 }

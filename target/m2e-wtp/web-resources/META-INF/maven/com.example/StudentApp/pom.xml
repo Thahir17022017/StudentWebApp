@@ -24,7 +24,6 @@
             </plugin>
         </plugins>
     </build>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -36,7 +35,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
@@ -46,12 +44,15 @@
             <groupId>org.glassfish.jersey.inject</groupId>
             <artifactId>jersey-hk2</artifactId>
         </dependency>
-        <!-- uncomment this to get JSON support
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-binding</artifactId>
         </dependency>
-        -->
+        <dependency>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>3.4.5</version>
+		</dependency>
     </dependencies>
     <properties>
         <jersey.version>2.32</jersey.version>
