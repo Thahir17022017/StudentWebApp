@@ -2,6 +2,8 @@ package com.crestron.pojos;
 
 public class Student {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String firstName;
 	private String lastName;
 	private String middleName;
