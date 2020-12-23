@@ -43,3 +43,13 @@ INNER JOIN
     studentappdb.TCOODS_STUDENT_MARKS as StudentMarks 
     ON Student.STUDENT_ID = StudentMarks.STUDENT_ID;
     
+
+delimiter #
+
+create trigger STUDENT_MARKS_TRIGGER before update on studentappdb.tcoods_student_marks
+for each row
+begin
+  set new.total = new.mark1 + new.mark2 +new.mark3;
+end#
+
+delimiter ;
