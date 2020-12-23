@@ -41,4 +41,5 @@ FROM
     studentappdb.TCOODS_STUDENT as Student
 INNER JOIN
     studentappdb.TCOODS_STUDENT_MARKS as StudentMarks 
-    ON Student.MARK_ID = StudentMarks.MARK_ID;
+    ON Student.STUDENT_ID = StudentMarks.STUDENT_ID;
+    
