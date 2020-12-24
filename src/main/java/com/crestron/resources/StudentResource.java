@@ -36,6 +36,9 @@ public class StudentResource {
 		st.setMiddleName(student.getMiddleName());
 		st.setLastName(student.getLastName());
 		st.setGender(student.getGender());
+		st.setMark1(student.getMark1());
+		st.setMark2(student.getMark2());
+		st.setMark3(student.getMark3());
 		StudentDAO stDAO = new StudentDAO();
 		stDAO.save(st);
 		 

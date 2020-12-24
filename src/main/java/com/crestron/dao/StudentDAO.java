@@ -2,6 +2,7 @@ package com.crestron.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -40,21 +41,45 @@ public class StudentDAO implements DAO<StudentDTO>{
 		return null;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void save(StudentDTO st) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String student_id=null;
 		try {
-		String insertSql = "INSERT INTO studentappdb.TCOODS_STUDENT(FIRST_NAME,MIDDLE_NAME,LAST_NAME,GENDER) VALUES(?,?,?,?)";
+		String insertSql1 = "INSERT INTO studentappdb.TCOODS_STUDENT(FIRST_NAME,MIDDLE_NAME,LAST_NAME,GENDER) VALUES(?,?,?,?)";
+		String lastinsertSql1 = "SELECT LAST_INSERT_ID() as STUDENT_ID;";
+		String insertSql2 = "INSERT INTO studentappdb.TCOODS_STUDENT_MARKS(STUDENT_ID,MARK1,MARK2,MARK3) VALUES(?,?,?,?)";
 		conn.setAutoCommit(false);
-		pstmt = conn.prepareStatement(insertSql);
+		pstmt = conn.prepareStatement(insertSql1);
 		pstmt.setString(1,st.getFirstName());
 		pstmt.setString(2,st.getMiddleName());
 		pstmt.setString(3,st.getLastName());
 		pstmt.setString(4,st.getGender());
 		int cnt = pstmt.executeUpdate();
 		logger.info("Student inserted : "+cnt);
+		
+		
+		pstmt = conn.prepareStatement(lastinsertSql1);
+		rs = pstmt.executeQuery();
+		while(rs.next())
+		{
+			student_id=rs.getString("STUDENT_ID");
+		}
+		logger.info("Student_ID : "+student_id);
+		
+		pstmt = conn.prepareStatement(insertSql2);
+		pstmt.setString(1,student_id);
+		pstmt.setInt(2,st.getMark1());
+		pstmt.setInt(3,st.getMark2());
+		pstmt.setInt(4,st.getMark3());
+		int cnt2 = pstmt.executeUpdate();
+		logger.info("Marks inserted : "+cnt2);
+		
 		conn.commit();
+		
 		}
 		catch(Exception e)
 		{
