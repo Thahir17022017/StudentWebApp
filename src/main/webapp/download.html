@@ -10,10 +10,11 @@
         <title>Crestron Sample App</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="css/download.css">
         <!-- Latest compiled and minified CSS -->
         <link href="fontawesome/css/all.css" rel="stylesheet"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
 
     </head>
     <body>
@@ -51,24 +52,36 @@
             </div>
           </nav>
 
-          <!-- Landing Page implementation -->
           <div class="container pt-5 pb-5">
-          <div class="row">
-          <div class="mx-auto my-auto">
-          <div class="card shadow" style="width:350px">
-          <div class="card-body">
-            
-          </div>
-      </div>
-      </div> 
-      </div>
-
-
-
-
-
-
-
+	          <div class="row">
+		          <div class="mx-auto my-auto">
+			          <div class="card shadow">
+					          <div class="card-body">
+					            <h4 class="card-title d-flex justify-content-center">Download</h4>
+					            <div class="row" style="padding:10px;">
+					            	<div class="col d-flex justify-content-center">
+		                          <div class="input-group">
+		                            <input id="searchBox" type="text" class="form-control" style="border-radius:30px 0px 0px 30px;" placeholder="Search Student..." onfocus="clearMessage()">
+		                            <div class="input-group-append">
+		                              <button class="btn btn-secondary" type="button" style="border-radius:0px 30px 30px 0px;" onclick="searchStudent()">
+		                                <i class="fa fa-search"></i>
+		                              </button>
+		                            </div>
+		                          </div>
+                         
+                        </div>
+                      </div>
+                      <div>
+                        <label id="error" class="d-flex justify-content-center" style="color: red;"></label>
+                      </div>
+                      <div>
+                        <a id="download" class="d-flex justify-content-center"></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>      
 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -78,6 +91,10 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="js/index.js" async defer></script>
+        <script type="text/javascript" src="js/jquery.alphanum.js"></script>
+        <script>
+          $('#searchBox').alpha();
+        </script>
+        <script src="js/download.js?v=17170220172017" async defer></script>
     </body>
 </html>

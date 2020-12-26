@@ -68,4 +68,6 @@ values("Abu","mohamed","thahir","male",35);
 insert studentappdb.tcoods_student_marks(STUDENT_ID,MARK1,MARK2,MARK3)
 values(1,10,20,30);
 
+select first_name,middle_name,last_name from studentappdb.student_details where first_name like '%abu%' or middle_name like '%abu%' or last_name like '%thahir';
+
 
