@@ -78,11 +78,19 @@ function sendData()
 		jsonPayload["mark2"] = mark2.value;
 		jsonPayload["mark3"] = mark3.value;
         resetfields(fName,mName,lName,age,mark1,mark2,mark3);
-        import('./send.js').then((transport) => {
+        import('./send.js?v=1717').then((transport) => {
             // Do something with the module.
-           var request = transport.sendData("Post","./webapi/students",jsonPayload);
-           console.log("Response",request.responseText);
-        
+           var request = transport.sendData("POST","./webapi/students",jsonPayload);
+ 		   request.onreadystatechange = function() {
+        	if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+			if(response["status"] === "pass")
+            {
+                document.getElementById("resultScreen").click();
+            }
+			}
+			};
+                   
         }).catch((err)=>{
             console.log("Error in transport",err);
         });

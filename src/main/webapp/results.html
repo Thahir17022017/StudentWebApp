@@ -11,11 +11,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/student.css">
+        <link href="fontawesome/css/all.css" rel="stylesheet"> 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     </head>
-    <body>
+    <body onload="getResults()">
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -35,10 +36,10 @@
                   <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="student.html">Onboard</a>
+                  <a id="resultScreen" class="nav-link" href="student.html">Onboard</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Results</a>
+                  <a class="nav-link" href="#" onclick="getResults()">Results</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="hooks.html">Web Hooks</a>
@@ -50,65 +51,49 @@
             </div>
           </nav>
 
+          <!-- Landing Page implementation -->
+          <div class="container pt-5 pb-5">
+            <div class="row">
             
-                      <div class="table-responsive pt-5 pb-5">
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Firstname</th>
-                              <th>Lastname</th>
-                              <th>Age</th>
-                              <th>City</th>
-                              <th>Country</th>
-                              <th>Sex</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                              <th>Example</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>1</td>
-                              <td>Anna</td>
-                              <td>Pitt</td>
-                              <td>35</td>
-                              <td>New York</td>
-                              <td>USA</td>
-                              <td>Female</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                              <td>Yes</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <ul class="pagination justify-content-center">
-                          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                      </div>
-           
+            <div class="card shadow">
+            <div class="card-body">
+              <h4 class="card-title d-flex justify-content-center">Student Results</h4>
+              <div class="table-responsive">
+                <table class="table table-striped table-borderless">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Middle Name</th>
+                      <th>Last Name</th>
+                      <th>Age</th>
+                      <th>Gender</th>
+                      <th>Mark-1</th>
+                      <th>Mark-2</th>
+                      <th>Mark-3</th>
+                      <th>Total</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody" class="table-hover">
+                    
+                  </tbody>
+                </table>
+               <!--  <ul class="pagination justify-content-center">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>-->
+              </div>
+              
+            </div>
+            </div>
+            
+            </div>
+      </div>
+ 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -117,6 +102,6 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="js/index.js" async defer></script>
+        <script src="js/results.js?v=1717" async defer></script>
     </body>
 </html>

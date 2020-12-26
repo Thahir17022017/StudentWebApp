@@ -8,9 +8,11 @@ public class Student {
 	private String lastName;
 	private String middleName;
 	private String gender;
+	private int age;
 	private int mark1;
 	private int mark2;
 	private int mark3;
+	private int total;
 	private String status;
 
 	public Student() {
@@ -18,17 +20,35 @@ public class Student {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Student(String firstName, String lastName, String middleName, String gender, int mark1, int mark2, int mark3,
-			String status) {
+	public Student(String firstName, String lastName, String middleName, String gender,int age, int mark1, int mark2, int mark3,
+			int total,String status) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
 		this.gender = gender;
+		this.age = age;
 		this.mark1 = mark1;
 		this.mark2 = mark2;
 		this.mark3 = mark3;
+		this.total = total;
 		this.status = status;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
 	public String getStatus() {
@@ -98,7 +118,11 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", middleName=" + middleName + ", gender="
-				+ gender + ", mark1=" + mark1 + ", mark2=" + mark2 + ", mark3=" + mark3 + "]";
+				+ gender + ", age=" + age + ", mark1=" + mark1 + ", mark2=" + mark2 + ", mark3=" + mark3 + ", total="
+				+ total + ", status=" + status + "]";
 	}
+
+	
+	
 
 }
