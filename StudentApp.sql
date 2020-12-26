@@ -11,6 +11,7 @@ CREATE TABLE studentappdb.TCOODS_STUDENT(STUDENT_ID INT NOT NULL UNIQUE AUTO_INC
    MIDDLE_NAME VARCHAR(50) NOT NULL,
    LAST_NAME VARCHAR(50) NOT NULL, 
    GENDER VARCHAR(6) NOT NULL,
+   AGE INT NOT NULL,
    CREATED_TS TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    UPDATE_TS TIMESTAMP DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
    PRIMARY KEY (STUDENT_ID)  
@@ -36,6 +37,7 @@ SELECT
     Student.MIDDLE_NAME, 
     Student.LAST_NAME, 
     Student.GENDER, 
+    Student.AGE,
     StudentMarks.MARK1,
     StudentMarks.MARK2,
     StudentMarks.MARK3,
@@ -44,7 +46,8 @@ FROM
     studentappdb.TCOODS_STUDENT as Student
 INNER JOIN
     studentappdb.TCOODS_STUDENT_MARKS as StudentMarks 
-    ON Student.STUDENT_ID = StudentMarks.STUDENT_ID;
+    ON Student.STUDENT_ID = StudentMarks.STUDENT_ID
+    ORDER BY Student.STUDENT_ID DESC;
     
 
 DROP TRIGGER IF EXISTS `studentappdb`.`tcoods_student_marks_BEFORE_INSERT`;
@@ -59,9 +62,10 @@ DELIMITER ;
 
 SELECT LAST_INSERT_ID() as ID;
 
-Insert studentappdb.TCOODS_STUDENT(FIRST_NAME,MIDDLE_NAME,LAST_NAME,GENDER)
-values("Abu","mohamed","thahir","male");
+Insert studentappdb.TCOODS_STUDENT(FIRST_NAME,MIDDLE_NAME,LAST_NAME,GENDER,AGE)
+values("Abu","mohamed","thahir","male",35);
 
 insert studentappdb.tcoods_student_marks(STUDENT_ID,MARK1,MARK2,MARK3)
 values(1,10,20,30);
+
 

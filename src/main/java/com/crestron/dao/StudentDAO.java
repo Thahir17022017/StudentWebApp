@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -38,7 +39,50 @@ public class StudentDAO implements DAO<StudentDTO>{
 	@Override
 	public List<StudentDTO> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		List<StudentDTO> allStudents = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+		String selectSql1 = "SELECT * FROM studentappdb.student_details";
+		conn.setAutoCommit(false);
+		pstmt = conn.prepareStatement(selectSql1);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			StudentDTO st1 = new StudentDTO();
+			st1.setFirstName(rs.getString("FIRST_NAME"));
+			st1.setMiddleName(rs.getString("MIDDLE_NAME"));
+			st1.setLastName(rs.getString("LAST_NAME"));
+			st1.setGender(rs.getString("GENDER"));
+			st1.setAge(Integer.valueOf(rs.getString("AGE")));
+			st1.setMark1(Integer.valueOf(rs.getString("MARK1")));
+			st1.setMark2(Integer.valueOf(rs.getString("MARK2")));
+			st1.setMark3(Integer.valueOf(rs.getString("MARK3")));
+			st1.setTotal(Integer.valueOf(rs.getString("TOTAL")));
+			allStudents.add(st1);
+		}
+		conn.commit();
+		}
+		catch(Exception e)
+		{
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return allStudents;
 	}
 
 	@SuppressWarnings("resource")
@@ -49,7 +93,7 @@ public class StudentDAO implements DAO<StudentDTO>{
 		ResultSet rs = null;
 		String student_id=null;
 		try {
-		String insertSql1 = "INSERT INTO studentappdb.TCOODS_STUDENT(FIRST_NAME,MIDDLE_NAME,LAST_NAME,GENDER) VALUES(?,?,?,?)";
+		String insertSql1 = "INSERT INTO studentappdb.TCOODS_STUDENT(FIRST_NAME,MIDDLE_NAME,LAST_NAME,GENDER,AGE) VALUES(?,?,?,?,?)";
 		String lastinsertSql1 = "SELECT LAST_INSERT_ID() as STUDENT_ID;";
 		String insertSql2 = "INSERT INTO studentappdb.TCOODS_STUDENT_MARKS(STUDENT_ID,MARK1,MARK2,MARK3) VALUES(?,?,?,?)";
 		conn.setAutoCommit(false);
@@ -58,6 +102,7 @@ public class StudentDAO implements DAO<StudentDTO>{
 		pstmt.setString(2,st.getMiddleName());
 		pstmt.setString(3,st.getLastName());
 		pstmt.setString(4,st.getGender());
+		pstmt.setInt(5,st.getAge());
 		int cnt = pstmt.executeUpdate();
 		logger.info("Student inserted : "+cnt);
 		
@@ -93,20 +138,15 @@ public class StudentDAO implements DAO<StudentDTO>{
 		finally {
 			try {
 				pstmt.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
 				conn.close();
+				rs.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-		
-		
+
 	}
 
 	@Override
