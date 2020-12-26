@@ -7,17 +7,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.crestron.db.DataSource;
 import com.crestron.dto.StudentDTO;
 
 
 
+
 public class StudentDAO implements DAO<StudentDTO>{
 	
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(StudentDAO.class.getName());
+	
+	final static Logger logger = LoggerFactory.getLogger(StudentDAO.class);
+	
 	private Connection conn;
 	
 	
@@ -161,6 +167,71 @@ public class StudentDAO implements DAO<StudentDTO>{
 		
 	}
 
+	
+	public StudentDTO findStudent(String name)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StudentDTO student = new StudentDTO();
+		String searchString = "%"+name+"%";
+		logger.info("Search String for db : "+searchString);
+		try {
+		String selectSql1 = "select first_name,middle_name,last_name,age,gender,mark1,mark2,mark3,total from studentappdb.student_details where first_name like ? or middle_name like ? or last_name like ?";
+		conn.setAutoCommit(false);
+		pstmt = conn.prepareStatement(selectSql1);
+		pstmt.setString(1,searchString);
+		pstmt.setString(2,searchString);
+		pstmt.setString(3,searchString);
+		rs = pstmt.executeQuery();
+		boolean status = rs.first();
+		logger.info("Student found or not : "+status);
+			if(status == false)
+			{
+				student.setFirstName(name);
+				student.setMiddleName(name);
+				student.setLastName(name);
+				
+			}
+			else
+			{
+				student.setFirstName(rs.getString("first_name"));
+				student.setMiddleName(rs.getString("middle_name"));
+				student.setLastName(rs.getString("last_name"));
+				student.setAge(Integer.valueOf(rs.getString("age")));
+				student.setGender(rs.getString("gender"));
+				student.setMark1(Integer.valueOf(rs.getString("mark1")));
+				student.setMark2(Integer.valueOf(rs.getString("mark2")));
+				student.setMark3(Integer.valueOf(rs.getString("mark3")));
+				student.setTotal(Integer.valueOf(rs.getString("total")));
+				logger.info("Student in DAO else block: "+student);
+			}
+			conn.commit();
+		}
+			catch(Exception e)
+			{
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			finally {
+				try {
+					pstmt.close();
+					conn.close();
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		logger.info("Student in DAO : "+student);
+		return student;
+		
+	}
+	
 	
 
 }
