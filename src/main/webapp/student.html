@@ -137,6 +137,18 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+         <script type="text/javascript" src="js/jquery.alphanum.js"></script>
+        <script>
+          $('#firstname').alpha({maxLength :50});
+          $('#middlename').alpha({maxLength :50});
+          $('#lastname').alpha({maxLength :50});
+          $('#age').numeric({maxDigits:3,max:120});
+          $('#mark1').numeric({maxDigits:3,max:100});
+          $('#mark2').numeric({maxDigits:3,max:100});
+          $('#mark3').numeric({maxDigits:3,max:100});
+          
+          
+        </script>
         <script src="js/student.js?v=170217" async defer></script>
     </body>
 </html>
