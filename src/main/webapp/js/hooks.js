@@ -6,7 +6,7 @@ function hideSpinner() {
 	document.getElementById("getSpinner").style.visibility = "hidden";
 	document.getElementById("postSpinner").style.visibility = "hidden";
 	document.getElementById("putSpinner").style.visibility = "hidden";
-	request = import('./send.js?v=1717');
+	request = import('./send.js?v=1717022017201717');
 }
 
 function sendHook(requestTypeVal) {
@@ -33,7 +33,7 @@ function sendHook(requestTypeVal) {
 			document.getElementById("putSpinner").style.visibility = "visible";
 			break;
 		}
-		var request = transport.sendData(requestType, "https://webhook.site/e530c4ef-3d5e-407a-bf63-9289cbd26d5e", "");
+		var request = transport.sendData(requestType, "https://webhook.site/4996753d-304a-42a2-b3c9-c2dc617e956e", "");
 		request.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				console.log("request sent status : ", "pass");

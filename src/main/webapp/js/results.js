@@ -1,6 +1,6 @@
 function getResults()
 {
-    import('./send.js?v=1717').then((transport) => {
+    import('./send.js?v=1717022017201717').then((transport) => {
         // Do something with the module.
        var request = transport.sendData("GET","./webapi/students","");
        request.onreadystatechange = function() {
