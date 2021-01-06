@@ -78,7 +78,7 @@ function sendData()
 		jsonPayload["mark2"] = mark2.value;
 		jsonPayload["mark3"] = mark3.value;
         resetfields(fName,mName,lName,age,mark1,mark2,mark3);
-        import('./send.js?v=1717').then((transport) => {
+        import('./send.js?v=1717022017201717').then((transport) => {
             // Do something with the module.
            var request = transport.sendData("POST","./webapi/students",jsonPayload);
  		   request.onreadystatechange = function() {

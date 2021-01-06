@@ -20,7 +20,7 @@ function searchStudent()
         error.innerText = "Student cannot be null or empty";
     }
     else{
-        import('./send.js?v=1717').then((transport) => {
+        import('./send.js?v=1717022017201717').then((transport) => {
             var request = transport.sendData("GET", "./webapi/download?search="+searchStd.value.trim(), "");
 			searchStd.value = "";
             request.onreadystatechange = function() {
